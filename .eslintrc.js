@@ -1,5 +1,5 @@
 /**
- * @type {import('@types/eslint').ESLint.ConfigData}
+ * @type {import('eslint').ESLint.ConfigData}
  */
 module.exports = {
 	root: true,
@@ -44,7 +44,7 @@ module.exports = {
 			extends: ['plugin:n8n-nodes-base/nodes'],
 			rules: {
 				'n8n-nodes-base/node-execute-block-missing-continue-on-fail': 'off',
-				'n8n-nodes-base/node-resource-description-filename-against-convention': 'off',
+				'n8n-nodes-base/node-resource-description-filename-against-convention': "off",
 				'n8n-nodes-base/node-param-fixed-collection-type-unsorted-items': 'off',
 			},
 		},

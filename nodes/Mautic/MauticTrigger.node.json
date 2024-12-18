@@ -2,7 +2,10 @@
 	"node": "n8n-nodes-base.mauticTrigger",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Marketing", "Communication"],
+	"categories": [
+		"Marketing",
+		"Communication"
+	],
 	"resources": {
 		"credentialDocumentation": [
 			{

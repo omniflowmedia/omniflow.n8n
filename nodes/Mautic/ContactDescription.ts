@@ -28,13 +28,13 @@ export const contactOperations: INodeProperties[] = [
 				name: 'Edit Contact Points',
 				value: 'editContactPoint',
 				description: "Edit contact's points",
-				action: "Edit a contact's points",
+				action: 'Edit a contact s points',
 			},
 			{
 				name: 'Edit Do Not Contact List',
 				value: 'editDoNotContactList',
 				description: 'Add/remove contacts from/to the do not contact list',
-				action: 'Add/remove contacts from/to the do not contact list',
+				action: 'Add remove contacts from to the do not contact list',
 			},
 			{
 				name: 'Get',
@@ -126,8 +126,7 @@ export const contactFields: INodeProperties[] = [
 		displayName: 'Primary Company Name or ID',
 		name: 'company',
 		type: 'options',
-		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 		typeOptions: {
 			loadOptionsMethod: 'getCompanies',
 		},
@@ -261,7 +260,7 @@ export const contactFields: INodeProperties[] = [
 						value: 'B2C',
 					},
 				],
-				default: '',
+				default: 'B2B',
 			},
 			{
 				displayName: 'CRM ID',
@@ -292,8 +291,7 @@ export const contactFields: INodeProperties[] = [
 									loadOptionsMethod: 'getContactFields',
 								},
 								default: '',
-								description:
-									'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+								description: 'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 							},
 							{
 								displayName: 'Field Value',
@@ -343,7 +341,7 @@ export const contactFields: INodeProperties[] = [
 				name: 'ownerId',
 				type: 'string',
 				default: '',
-				description: 'ID of a Mautic user to assign this contact to',
+				description: 'ID of a OmniFlow user to assign this contact to',
 			},
 			{
 				displayName: 'Phone',
@@ -365,7 +363,7 @@ export const contactFields: INodeProperties[] = [
 						value: 'Customer',
 					},
 				],
-				default: '',
+				default: 'Prospect',
 			},
 			{
 				displayName: 'Sandbox',
@@ -377,8 +375,7 @@ export const contactFields: INodeProperties[] = [
 				displayName: 'Stage Name or ID',
 				name: 'stage',
 				type: 'options',
-				description:
-					'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				typeOptions: {
 					loadOptionsMethod: 'getStages',
 				},
@@ -388,8 +385,7 @@ export const contactFields: INodeProperties[] = [
 				displayName: 'Tag Names or IDs',
 				name: 'tags',
 				type: 'multiOptions',
-				description:
-					'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				typeOptions: {
 					loadOptionsMethod: 'getTags',
 				},
@@ -588,7 +584,7 @@ export const contactFields: INodeProperties[] = [
 						value: 'B2C',
 					},
 				],
-				default: '',
+				default: 'B2B',
 			},
 			{
 				displayName: 'CRM ID',
@@ -624,8 +620,7 @@ export const contactFields: INodeProperties[] = [
 									loadOptionsMethod: 'getContactFields',
 								},
 								default: '',
-								description:
-									'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+								description: 'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 							},
 							{
 								displayName: 'Field Value',
@@ -741,7 +736,7 @@ export const contactFields: INodeProperties[] = [
 					},
 				},
 				default: '',
-				description: 'ID of a Mautic user to assign this contact to',
+				description: 'ID of a OmniFlow user to assign this contact to',
 			},
 			{
 				displayName: 'Phone',
@@ -769,8 +764,7 @@ export const contactFields: INodeProperties[] = [
 				displayName: 'Primary Company Name or ID',
 				name: 'company',
 				type: 'options',
-				description:
-					'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				typeOptions: {
 					loadOptionsMethod: 'getCompanies',
 				},
@@ -800,7 +794,7 @@ export const contactFields: INodeProperties[] = [
 						value: 'Customer',
 					},
 				],
-				default: '',
+				default: 'Prospect',
 			},
 			{
 				displayName: 'Sandbox',
@@ -817,8 +811,7 @@ export const contactFields: INodeProperties[] = [
 				displayName: 'Stage Name or ID',
 				name: 'stage',
 				type: 'options',
-				description:
-					'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				displayOptions: {
 					show: {
 						'/jsonParameters': [false],
@@ -833,8 +826,7 @@ export const contactFields: INodeProperties[] = [
 				displayName: 'Tag Names or IDs',
 				name: 'tags',
 				type: 'multiOptions',
-				description:
-					'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				displayOptions: {
 					show: {
 						'/jsonParameters': [false],
@@ -1141,9 +1133,8 @@ export const contactFields: INodeProperties[] = [
 		},
 		typeOptions: {
 			minValue: 1,
-			maxValue: 30,
 		},
-		default: 30,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 
@@ -1217,7 +1208,7 @@ export const contactFields: INodeProperties[] = [
 						'/operation': ['getAll'],
 					},
 				},
-				default: '',
+				default: 'asc',
 				options: [
 					{
 						name: 'ASC',
@@ -1274,8 +1265,7 @@ export const contactFields: INodeProperties[] = [
 		displayName: 'Campaign Email Name or ID',
 		name: 'campaignEmailId',
 		type: 'options',
-		description:
-			'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 		required: true,
 		displayOptions: {
 			show: {

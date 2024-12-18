@@ -16,17 +16,17 @@ import { mauticApiRequest } from './GenericFunctions';
 
 export class MauticTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Mautic Trigger',
+		displayName: 'OmniFlow Trigger',
 		name: 'mauticTrigger',
 		icon: 'file:mautic.svg',
 		group: ['trigger'],
 		version: 1,
-		description: 'Handle Mautic events via webhooks',
+		description: 'Handle OmniFlow events via webhooks',
 		defaults: {
-			name: 'Mautic Trigger',
+			name: 'OmniFlow Trigger',
 		},
 		inputs: [],
-		outputs: [NodeConnectionType.Main],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'mauticApi',
@@ -76,8 +76,7 @@ export class MauticTrigger implements INodeType {
 				displayName: 'Event Names or IDs',
 				name: 'events',
 				type: 'multiOptions',
-				description:
-					'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+				description: 'Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
 				required: true,
 				typeOptions: {
 					loadOptionsMethod: 'getEvents',

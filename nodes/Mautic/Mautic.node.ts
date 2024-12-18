@@ -27,18 +27,18 @@ import { campaignContactFields, campaignContactOperations } from './CampaignCont
 
 export class Mautic implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Mautic',
+		displayName: 'OmniFlow',
 		name: 'mautic',
 		icon: 'file:mautic.svg',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume Mautic API',
+		description: 'Consume OmniFlow API',
 		defaults: {
-			name: 'Mautic',
+			name: 'OmniFlow',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'mauticApi',

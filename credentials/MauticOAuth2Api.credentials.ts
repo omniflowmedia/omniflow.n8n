@@ -1,12 +1,15 @@
 import type { ICredentialType, INodeProperties } from 'n8n-workflow';
 
+// the OmniFlow nodes still use original mauticApi
+// So this file is mostly to fill the eslint requirement
 export class MauticOAuth2Api implements ICredentialType {
-  name = 'mauticOAuth2Api';
+  name = 'omniflowOAuth2Api';
 
   extends = ['oAuth2Api'];
 
   displayName = 'OmniFlow OAuth2 API';
 
+  // eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-not-http-url
   documentationUrl = 'mautic';
 
   properties: INodeProperties[] = [

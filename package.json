@@ -53,10 +53,10 @@
     "typescript": "^5.5.3"
   },
   "peerDependencies": {
-    "n8n-workflow": "*"
+    "n8n-workflow": "*",
+    "change-case": "^4.1.2"
   },
   "dependencies": {
-    "change-case": "4.1.2",
     "url": "^0.11.4"
   }
 }

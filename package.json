@@ -37,8 +37,8 @@
     "n8nNodesApiVersion": 1,
     "credentials": [],
     "nodes": [
-      "dist/nodes/Mautic/Mautic.node.js",
-      "dist/nodes/Mautic/MauticTrigger.node.js"
+      "dist/nodes/Omniflow/Omniflow.node.js",
+      "dist/nodes/Omniflow/OmniflowTrigger.node.js"
     ]
   },
   "devDependencies": {

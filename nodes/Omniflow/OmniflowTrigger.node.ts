@@ -13,7 +13,7 @@ import {
 
 import { mauticApiRequest } from './GenericFunctions';
 
-export class MauticTrigger implements INodeType {
+export class OmniflowTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow Trigger',
 		name: 'omniflowTrigger',

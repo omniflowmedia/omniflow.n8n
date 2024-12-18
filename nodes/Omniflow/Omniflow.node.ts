@@ -25,7 +25,7 @@ import { contactSegmentFields, contactSegmentOperations } from './ContactSegment
 
 import { campaignContactFields, campaignContactOperations } from './CampaignContactDescription';
 
-export class Mautic implements INodeType {
+export class Omniflow implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow',
 		name: 'omniflow',

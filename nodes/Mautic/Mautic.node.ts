@@ -8,7 +8,7 @@ import type {
 	INodeTypeDescription,
 	JsonObject,
 } from 'n8n-workflow';
-import { NodeConnectionType, NodeApiError, NodeOperationError } from 'n8n-workflow';
+import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 
 import { snakeCase } from 'change-case';
 import { mauticApiRequest, mauticApiRequestAllItems, validateJSON } from './GenericFunctions';
@@ -28,7 +28,7 @@ import { campaignContactFields, campaignContactOperations } from './CampaignCont
 export class Mautic implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow',
-		name: 'mautic',
+		name: 'omniflow',
 		icon: 'file:mautic.svg',
 		group: ['output'],
 		version: 1,

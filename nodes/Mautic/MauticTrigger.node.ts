@@ -9,7 +9,6 @@ import {
 	type INodeType,
 	type INodeTypeDescription,
 	type IWebhookResponseData,
-	NodeConnectionType,
 } from 'n8n-workflow';
 
 import { mauticApiRequest } from './GenericFunctions';
@@ -17,7 +16,7 @@ import { mauticApiRequest } from './GenericFunctions';
 export class MauticTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow Trigger',
-		name: 'mauticTrigger',
+		name: 'omniflowTrigger',
 		icon: 'file:mautic.svg',
 		group: ['trigger'],
 		version: 1,

@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-base.mauticTrigger",
+	"node": "n8n-nodes-base.omniflowTrigger",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [

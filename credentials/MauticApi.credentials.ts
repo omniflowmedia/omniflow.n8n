@@ -8,7 +8,7 @@ import type {
 export class MauticApi implements ICredentialType {
   name = 'mauticApi';
 
-  displayName = 'Mautic API';
+  displayName = 'OmniFlow API';
 
   documentationUrl = 'mautic';
 

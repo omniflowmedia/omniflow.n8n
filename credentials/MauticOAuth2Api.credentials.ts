@@ -5,7 +5,7 @@ export class MauticOAuth2Api implements ICredentialType {
 
   extends = ['oAuth2Api'];
 
-  displayName = 'Mautic OAuth2 API';
+  displayName = 'OmniFlow OAuth2 API';
 
   documentationUrl = 'mautic';
 

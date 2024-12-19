@@ -17,7 +17,8 @@ export class OmniflowTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow Trigger',
 		name: 'omniflowTrigger',
-		icon: 'file:mautic.svg',
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
+		icon: 'file:omniflow.png',
 		group: ['trigger'],
 		version: 1,
 		description: 'Handle OmniFlow events via webhooks',

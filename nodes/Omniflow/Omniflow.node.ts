@@ -29,7 +29,8 @@ export class Omniflow implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'OmniFlow',
 		name: 'omniflow',
-		icon: 'file:mautic.svg',
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
+		icon: 'file:omniflow.png',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

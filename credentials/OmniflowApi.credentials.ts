@@ -9,6 +9,7 @@ export class OmniflowApi implements ICredentialType {
   name = 'omniflowApi';
 
   displayName = 'OmniFlow API';
+  icon?: 'file:omniflow.png';
 
   // eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-not-http-url
   documentationUrl = 'mautic';
@@ -19,7 +20,7 @@ export class OmniflowApi implements ICredentialType {
       name: 'url',
       type: 'string',
       default: '',
-      placeholder: 'https://name.mautic.net',
+      placeholder: 'https://name.omniflow-ams.com',
     },
     {
       displayName: 'Username',

@@ -6,6 +6,7 @@ export class OmniflowOAuth2Api implements ICredentialType {
   extends = ['oAuth2Api'];
 
   displayName = 'OmniFlow OAuth2 API';
+  icon?: 'file:omniflow.png';
 
   // eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-not-http-url
   documentationUrl = 'mautic';

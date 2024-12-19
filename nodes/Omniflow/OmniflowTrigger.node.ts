@@ -11,7 +11,7 @@ import {
 	type IWebhookResponseData,
 } from 'n8n-workflow';
 
-import { mauticApiRequest } from './GenericFunctions';
+import { omniflowApiRequest } from './GenericFunctions';
 
 export class OmniflowTrigger implements INodeType {
 	description: INodeTypeDescription = {
@@ -29,7 +29,7 @@ export class OmniflowTrigger implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'mauticApi',
+				name: 'omniflowApi',
 				required: true,
 				displayOptions: {
 					show: {
@@ -38,7 +38,7 @@ export class OmniflowTrigger implements INodeType {
 				},
 			},
 			{
-				name: 'mauticOAuth2Api',
+				name: 'omniflowOAuth2Api',
 				required: true,
 				displayOptions: {
 					show: {
@@ -109,7 +109,7 @@ export class OmniflowTrigger implements INodeType {
 			// select them easily
 			async getEvents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const { triggers } = await mauticApiRequest.call(this, 'GET', '/hooks/triggers');
+				const { triggers } = await omniflowApiRequest.call(this, 'GET', '/hooks/triggers');
 				for (const [key, value] of Object.entries(triggers as IDataObject)) {
 					const eventId = key;
 					const eventName = (value as IDataObject).label as string;
@@ -134,7 +134,7 @@ export class OmniflowTrigger implements INodeType {
 				}
 				const endpoint = `/hooks/${webhookData.webhookId}`;
 				try {
-					await mauticApiRequest.call(this, 'GET', endpoint, {});
+					await omniflowApiRequest.call(this, 'GET', endpoint, {});
 				} catch (error) {
 					return false;
 				}
@@ -154,14 +154,14 @@ export class OmniflowTrigger implements INodeType {
 					eventsOrderbyDir: eventsOrder,
 					isPublished: true,
 				};
-				const { hook } = await mauticApiRequest.call(this, 'POST', '/hooks/new', body);
+				const { hook } = await omniflowApiRequest.call(this, 'POST', '/hooks/new', body);
 				webhookData.webhookId = hook.id;
 				return true;
 			},
 			async delete(this: IHookFunctions): Promise<boolean> {
 				const webhookData = this.getWorkflowStaticData('node');
 				try {
-					await mauticApiRequest.call(this, 'DELETE', `/hooks/${webhookData.webhookId}/delete`);
+					await omniflowApiRequest.call(this, 'DELETE', `/hooks/${webhookData.webhookId}/delete`);
 				} catch (error) {
 					return false;
 				}

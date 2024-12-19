@@ -11,7 +11,7 @@ import type {
 import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 
 import { snakeCase } from 'change-case';
-import { mauticApiRequest, mauticApiRequestAllItems, validateJSON } from './GenericFunctions';
+import { omniflowApiRequest, omniflowApiRequestAllItems, validateJSON } from './GenericFunctions';
 
 import { contactFields, contactOperations } from './ContactDescription';
 
@@ -42,7 +42,7 @@ export class Omniflow implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'mauticApi',
+				name: 'omniflowApi',
 				required: true,
 				displayOptions: {
 					show: {
@@ -51,7 +51,7 @@ export class Omniflow implements INodeType {
 				},
 			},
 			{
-				name: 'mauticOAuth2Api',
+				name: 'omniflowOAuth2Api',
 				required: true,
 				displayOptions: {
 					show: {
@@ -137,7 +137,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getCompanies(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const companies = await mauticApiRequestAllItems.call(
+				const companies = await omniflowApiRequestAllItems.call(
 					this,
 					'companies',
 					'GET',
@@ -155,7 +155,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getTags(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const tags = await mauticApiRequestAllItems.call(this, 'tags', 'GET', '/tags');
+				const tags = await omniflowApiRequestAllItems.call(this, 'tags', 'GET', '/tags');
 				for (const tag of tags) {
 					returnData.push({
 						name: tag.tag,
@@ -168,7 +168,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getStages(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const stages = await mauticApiRequestAllItems.call(this, 'stages', 'GET', '/stages');
+				const stages = await omniflowApiRequestAllItems.call(this, 'stages', 'GET', '/stages');
 				for (const stage of stages) {
 					returnData.push({
 						name: stage.name,
@@ -181,7 +181,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getCompanyFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const fields = await mauticApiRequestAllItems.call(
+				const fields = await omniflowApiRequestAllItems.call(
 					this,
 					'fields',
 					'GET',
@@ -197,7 +197,7 @@ export class Omniflow implements INodeType {
 			},
 			async getIndustries(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const fields = await mauticApiRequestAllItems.call(
+				const fields = await omniflowApiRequestAllItems.call(
 					this,
 					'fields',
 					'GET',
@@ -219,7 +219,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getContactFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const fields = await mauticApiRequestAllItems.call(
+				const fields = await omniflowApiRequestAllItems.call(
 					this,
 					'fields',
 					'GET',
@@ -237,7 +237,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getSegments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const segments = await mauticApiRequestAllItems.call(this, 'lists', 'GET', '/segments');
+				const segments = await omniflowApiRequestAllItems.call(this, 'lists', 'GET', '/segments');
 				for (const segment of segments) {
 					returnData.push({
 						name: segment.name,
@@ -250,7 +250,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getCampaigns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const campaings = await mauticApiRequestAllItems.call(
+				const campaings = await omniflowApiRequestAllItems.call(
 					this,
 					'campaigns',
 					'GET',
@@ -268,7 +268,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getEmails(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const emails = await mauticApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
+				const emails = await omniflowApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
 				for (const email of emails) {
 					returnData.push({
 						name: email.name,
@@ -281,7 +281,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getSegmentEmails(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const emails = await mauticApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
+				const emails = await omniflowApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
 				for (const email of emails) {
 					if (email.emailType === 'list') {
 						returnData.push({
@@ -296,7 +296,7 @@ export class Omniflow implements INodeType {
 			// select them easily
 			async getCampaignEmails(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const returnData: INodePropertyOptions[] = [];
-				const emails = await mauticApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
+				const emails = await omniflowApiRequestAllItems.call(this, 'emails', 'GET', '/emails');
 				for (const email of emails) {
 					if (email.emailType === 'template') {
 						returnData.push({
@@ -420,7 +420,7 @@ export class Omniflow implements INodeType {
 						}
 
 						Object.assign(body, rest);
-						responseData = await mauticApiRequest.call(this, 'POST', '/companies/new', body);
+						responseData = await omniflowApiRequest.call(this, 'POST', '/companies/new', body);
 						responseData = responseData.company;
 						if (simple) {
 							responseData = responseData.fields.all;
@@ -527,7 +527,7 @@ export class Omniflow implements INodeType {
 
 						Object.assign(body, rest);
 
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'PATCH',
 							`/companies/${companyId}/edit`,
@@ -542,7 +542,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'get') {
 						const companyId = this.getNodeParameter('companyId', i) as string;
 						const simple = this.getNodeParameter('simple', i) as boolean;
-						responseData = await mauticApiRequest.call(this, 'GET', `/companies/${companyId}`);
+						responseData = await omniflowApiRequest.call(this, 'GET', `/companies/${companyId}`);
 						responseData = responseData.company;
 						if (simple) {
 							responseData = responseData.fields.all;
@@ -555,7 +555,7 @@ export class Omniflow implements INodeType {
 						const additionalFields = this.getNodeParameter('additionalFields', i);
 						qs = Object.assign(qs, additionalFields);
 						if (returnAll) {
-							responseData = await mauticApiRequestAllItems.call(
+							responseData = await omniflowApiRequestAllItems.call(
 								this,
 								'companies',
 								'GET',
@@ -566,7 +566,7 @@ export class Omniflow implements INodeType {
 						} else {
 							qs.limit = this.getNodeParameter('limit', i);
 							qs.start = 0;
-							responseData = await mauticApiRequest.call(this, 'GET', '/companies', {}, qs);
+							responseData = await omniflowApiRequest.call(this, 'GET', '/companies', {}, qs);
 							if (responseData.errors) {
 								throw new NodeApiError(this.getNode(), responseData as JsonObject);
 							}
@@ -582,7 +582,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'delete') {
 						const simple = this.getNodeParameter('simple', i) as boolean;
 						const companyId = this.getNodeParameter('companyId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'DELETE',
 							`/companies/${companyId}/delete`,
@@ -693,7 +693,7 @@ export class Omniflow implements INodeType {
 						if (additionalFields.website) {
 							body.website = additionalFields.website as string;
 						}
-						responseData = await mauticApiRequest.call(this, 'POST', '/contacts/new', body);
+						responseData = await omniflowApiRequest.call(this, 'POST', '/contacts/new', body);
 						responseData = [responseData.contact];
 						if (options.rawData === false) {
 							responseData = responseData.map((item) => item.fields.all);
@@ -808,7 +808,7 @@ export class Omniflow implements INodeType {
 						if (updateFields.website) {
 							body.website = updateFields.website as string;
 						}
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'PATCH',
 							`/contacts/${contactId}/edit`,
@@ -823,7 +823,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'get') {
 						const options = this.getNodeParameter('options', i);
 						const contactId = this.getNodeParameter('contactId', i) as string;
-						responseData = await mauticApiRequest.call(this, 'GET', `/contacts/${contactId}`);
+						responseData = await omniflowApiRequest.call(this, 'GET', `/contacts/${contactId}`);
 						responseData = [responseData.contact];
 						if (options.rawData === false) {
 							responseData = responseData.map((item) => item.fields.all);
@@ -842,7 +842,7 @@ export class Omniflow implements INodeType {
 						}
 
 						if (returnAll) {
-							responseData = await mauticApiRequestAllItems.call(
+							responseData = await omniflowApiRequestAllItems.call(
 								this,
 								'contacts',
 								'GET',
@@ -853,7 +853,7 @@ export class Omniflow implements INodeType {
 						} else {
 							qs.limit = this.getNodeParameter('limit', i);
 							qs.start = 0;
-							responseData = await mauticApiRequest.call(this, 'GET', '/contacts', {}, qs);
+							responseData = await omniflowApiRequest.call(this, 'GET', '/contacts', {}, qs);
 							if (responseData.errors) {
 								throw new NodeApiError(this.getNode(), responseData as JsonObject);
 							}
@@ -869,7 +869,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'delete') {
 						const options = this.getNodeParameter('options', i);
 						const contactId = this.getNodeParameter('contactId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'DELETE',
 							`/contacts/${contactId}/delete`,
@@ -883,7 +883,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'sendEmail') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const campaignEmailId = this.getNodeParameter('campaignEmailId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/emails/${campaignEmailId}/contact/${contactId}/send`,
@@ -900,7 +900,7 @@ export class Omniflow implements INodeType {
 							const additionalFields = this.getNodeParameter('additionalFields', i);
 							Object.assign(body, additionalFields);
 						}
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/contacts/${contactId}/dnc/${channel}/${action}`,
@@ -916,7 +916,7 @@ export class Omniflow implements INodeType {
 						const action = this.getNodeParameter('action', i) as string;
 						const points = this.getNodeParameter('points', i) as string;
 						const path = action === 'add' ? 'plus' : 'minus';
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/contacts/${contactId}/points/${path}/${points}`,
@@ -929,7 +929,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'add') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const segmentId = this.getNodeParameter('segmentId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/segments/${segmentId}/contact/${contactId}/add`,
@@ -939,7 +939,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'remove') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const segmentId = this.getNodeParameter('segmentId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/segments/${segmentId}/contact/${contactId}/remove`,
@@ -952,7 +952,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'add') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const campaignId = this.getNodeParameter('campaignId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/campaigns/${campaignId}/contact/${contactId}/add`,
@@ -962,7 +962,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'remove') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const campaignId = this.getNodeParameter('campaignId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/campaigns/${campaignId}/contact/${contactId}/remove`,
@@ -974,7 +974,7 @@ export class Omniflow implements INodeType {
 					//https://developer.mautic.org/#send-email-to-segment
 					if (operation === 'send') {
 						const segmentEmailId = this.getNodeParameter('segmentEmailId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/emails/${segmentEmailId}/send`,
@@ -987,7 +987,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'add') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const companyId = this.getNodeParameter('companyId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/companies/${companyId}/contact/${contactId}/add`,
@@ -1002,7 +1002,7 @@ export class Omniflow implements INodeType {
 					if (operation === 'remove') {
 						const contactId = this.getNodeParameter('contactId', i) as string;
 						const companyId = this.getNodeParameter('companyId', i) as string;
-						responseData = await mauticApiRequest.call(
+						responseData = await omniflowApiRequest.call(
 							this,
 							'POST',
 							`/companies/${companyId}/contact/${contactId}/remove`,

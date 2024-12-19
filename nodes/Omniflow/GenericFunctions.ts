@@ -9,7 +9,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
-export async function mauticApiRequest(
+export async function omniflowApiRequest(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
 	method: IHttpRequestMethods,
 	endpoint: string,
@@ -33,17 +33,17 @@ export async function mauticApiRequest(
 		let returnData;
 
 		if (authenticationMethod === 'credentials') {
-			const credentials = await this.getCredentials('mauticApi');
+			const credentials = await this.getCredentials('omniflowApi');
 			const baseUrl = credentials.url as string;
 
 			options.uri = `${baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl}${options.uri}`;
-			returnData = await this.helpers.requestWithAuthentication.call(this, 'mauticApi', options);
+			returnData = await this.helpers.requestWithAuthentication.call(this, 'omniflowApi', options);
 		} else {
-			const credentials = await this.getCredentials('mauticOAuth2Api');
+			const credentials = await this.getCredentials('omniflowOAuth2Api');
 			const baseUrl = credentials.url as string;
 
 			options.uri = `${baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl}${options.uri}`;
-			returnData = await this.helpers.requestOAuth2.call(this, 'mauticOAuth2Api', options, {
+			returnData = await this.helpers.requestOAuth2.call(this, 'omniflowOAuth2Api', options, {
 				includeCredentialsOnRefreshOnBody: true,
 			});
 		}
@@ -63,7 +63,7 @@ export async function mauticApiRequest(
  * Make an API request to paginated mautic endpoint
  * and return all results
  */
-export async function mauticApiRequestAllItems(
+export async function omniflowApiRequestAllItems(
 	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
 	propertyName: string,
 	method: IHttpRequestMethods,
@@ -79,7 +79,7 @@ export async function mauticApiRequestAllItems(
 	query.start = 0;
 
 	do {
-		responseData = await mauticApiRequest.call(this, method, endpoint, body, query);
+		responseData = await omniflowApiRequest.call(this, method, endpoint, body, query);
 		const values = Object.values(responseData[propertyName] as IDataObject[]);
 		returnData.push.apply(returnData, values);
 		query.start += query.limit;
